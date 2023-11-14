@@ -12,16 +12,32 @@ using namespace std;
 
 int main(int argc, char** argv){
 
-    //const long init_size = 100;
-    //FIFOBuffer<int> buf = FIFOBuffer<int>(init_size);
-    
-    FIFOBuffer<int> buf = FIFOBuffer<int>();
+    int capacity = 1;
+    int iterations = 20;
+
+    //? Argument parsing
+    for (int i=1; i<argc; ++i){
+        string arg = (string)argv[i];
+        if (arg == "-h" || arg == "--help"){
+            cout <<
+            "Accepted arguments:\n"
+            "\t-c, --capacity <int>: initial capacity of buffer\n"
+            "\t-i, --iterations <int>: number of iterations per test\n"
+            << endl;
+            exit(0);
+        }
+        if (arg == "-c" || arg == "--capacity")
+            capacity = stoi(argv[i+1]);
+        if (arg == "-i" || arg == "--iterations")
+            iterations = stoi(argv[i+1]);
+    }
+
+    FIFOBuffer<int> buf = FIFOBuffer<int>(capacity);
 
 
 
     // ----------------------------------------------------------
 
-    const int iterations = 20;
     char msg[64] = "\0";
 
     //? Many pushes
