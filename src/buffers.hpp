@@ -54,6 +54,9 @@ class FIFOBuffer {
 
 //? Start of FIFO buffer implementations -------------------------------------------------------------------------
 
+/*
+    Empty constructor that initializes capacity to 1
+*/
 template<typename T> FIFOBuffer<T>::FIFOBuffer(){
     this->size = 0;
     this->capacity = 1;
