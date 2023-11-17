@@ -11,5 +11,5 @@ A demo binary is included to test buffer properties:
 ```sh
 ~$ mkdir build
 ~$ cmake build/
-~$ cmake --build ./build --config Debug --target all
+~$ cmake --build ./build --config Release --target all
 ```
