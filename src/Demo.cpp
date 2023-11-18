@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <iostream>
 #include <string>
+#include <chrono>
 
 using namespace std;
 
@@ -45,20 +46,201 @@ void popMsg(FIFOBuffer<int>* fifo, LIFOBuffer<int>* lifo, int i){
 
 
 
+int intensiveTestRoutine(FIFOBuffer<int>* fifo, LIFOBuffer<int>* lifo, int iterations){
+    cout << 
+        "---- Launching intensive test routine with " << iterations <<" iterations per cycle ----\n" 
+        "\tNo output will be given during the single tests to measure only the push and pop execution times\n"
+        "\t(initial capacity of FIFO and LIFO buffers = " << fifo->getCapacity() << ")\n"
+    << endl;
+
+    auto start = chrono::high_resolution_clock::now();
+    auto end = chrono::high_resolution_clock::now();
+    int tmp = 0;
+
+    cout << "Press Enter to start..." << endl;
+    cin.get();
+
+
+    // -------------------------------------------------------------------------------------
+
+    cout << "\n\n\n~> Testing the FIFOBuffer...\n" << endl;
+
+    cout << "~> Performing " << iterations << " pushes...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        fifo->push(i);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent FIFOBuffer capacity = " << fifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        fifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent FIFOBuffer capacity = " << fifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " invalid pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        fifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent FIFOBuffer capacity = " << fifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " pushes...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        fifo->push(i);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent FIFOBuffer capacity = " << fifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        fifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent FIFOBuffer capacity = " << fifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " invalid pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        fifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent FIFOBuffer capacity = " << fifo->getCapacity() << "\n"
+    << endl;
+
+
+    // -------------------------------------------------------------------------------------
+
+    cout << "\n\n\n~> Testing the LIFOBuffer...\n" << endl;
+
+    cout << "~> Performing " << iterations << " pushes...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        lifo->push(i);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent LIFOBuffer capacity = " << lifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        lifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent LIFOBuffer capacity = " << lifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " invalid pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        lifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent LIFOBuffer capacity = " << lifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " pushes...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        lifo->push(i);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent LIFOBuffer capacity = " << lifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        lifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent LIFOBuffer capacity = " << lifo->getCapacity() << "\n"
+    << endl;
+
+    cout << "~> Performing " << iterations << " invalid pops...\n" << endl;
+    start = chrono::high_resolution_clock::now();
+    for (int i=0; i<iterations; ++i){
+        lifo->pop(&tmp);
+    }
+    end = chrono::high_resolution_clock::now();
+    cout << 
+        "\tTime taken = " << (chrono::duration_cast<chrono::milliseconds>(end-start)).count() << " ms\n"
+        "\tCurrent LIFOBuffer capacity = " << lifo->getCapacity() << "\n"
+    << endl;
+
+
+
+
+
+    return 0;
+}
+
+
+
+
 
 int main(int argc, char** argv){
 
     int capacity = 1;
     int iterations = 20;
 
+    bool intensive_test = false;
+    const int intensiveTest_iterations = 100'000'000;
+
     //? Argument parsing
-    for (int i=1; i<argc; ++i){
-        string arg = (string)argv[i];
-        if (arg == "-h" || arg == "--help"){
-            cout <<
+    string arg = "";
+    if (argc < 2){
+        cout <<
             "Accepted arguments:\n"
             "\t-c, --capacity <int>: initial capacity of buffer\n"
             "\t-i, --iterations <int>: number of iterations per test\n"
+            "\t-t, --time: launch an intensive timed test of " << intensiveTest_iterations << " iterations per test case\n"
+        << endl;
+        exit(0);
+    }
+
+    for (int i=1; i<argc; ++i){
+        arg = (string)argv[i];
+        if (arg == "-h" || arg == "--help"){
+            cout <<
+                "Accepted arguments:\n"
+                "\t-c, --capacity <int>: initial capacity of buffer\n"
+                "\t-i, --iterations <int>: number of iterations per test\n"
+                "\t-t, --time: launch an intensive timed test of " << intensiveTest_iterations << " iterations per test case\n"
             << endl;
             exit(0);
         }
@@ -66,12 +248,20 @@ int main(int argc, char** argv){
             capacity = stoi(argv[i+1]);
         if (arg == "-i" || arg == "--iterations")
             iterations = stoi(argv[i+1]);
+        if (arg == "-t" || arg == "--time")
+            intensive_test = true;
     }
 
     FIFOBuffer<int> fifo = FIFOBuffer<int>(capacity);
     LIFOBuffer<int> lifo = LIFOBuffer<int>(capacity);
 
-
+    if (intensive_test){
+        if (intensiveTestRoutine(&fifo, &lifo, intensiveTest_iterations)){
+            cout << "Oops! Something went wrong in the test routine!\n" << endl;
+            return 1;
+        }
+        return 0;
+    }
 
     // ----------------------------------------------------------
 
