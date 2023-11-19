@@ -10,8 +10,8 @@ A demo binary is included to test buffer properties that can be compiled with cm
 
 ```sh
 mkdir -p build &&
-cmake build/ &&
-cmake --build ./build --config Release --target all
+cmake -DCMAKE_BUILD_TYPE=Release build/ &&
+cmake --build ./build --target all
 ```
 
 ## Screenshots
