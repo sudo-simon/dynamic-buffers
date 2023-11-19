@@ -16,6 +16,10 @@ cmake --build ./build --config Release --target all
 
 ## Screenshots
 
-![time_1](./screenshots/time_1.png)
+| ![time_1](./screenshots/time_1.png) |
+|:--:|
+| _Time performance of a FIFO buffer with initial capacity of 1 and 100 million iterations per test_ |
 
-![time_2](./screenshots/time_2.png)
+| ![time_2](./screenshots/time_2.png) |
+|:--:|
+| _Time performance of a FIFO buffer with initial capacity of 100 million and 100 million iterations per test_ |
