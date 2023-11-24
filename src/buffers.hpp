@@ -111,11 +111,9 @@ template <typename T> FIFOBuffer<T>::FIFOBuffer() {
   this->prev_push_i = -1;
   this->pop_i = -1;
 
-  this->next_pop = std::vector<long>();
-  this->next_pop.reserve(1);
+  this->next_pop = std::vector<long>(1);
 
-  this->buffer = std::vector<T>();
-  this->buffer.reserve(1);
+  this->buffer = std::vector<T>(1);
 }
 
 template <typename T> FIFOBuffer<T>::FIFOBuffer(long initial_capacity) {
@@ -130,11 +128,9 @@ template <typename T> FIFOBuffer<T>::FIFOBuffer(long initial_capacity) {
   this->prev_push_i = -1;
   this->pop_i = -1;
 
-  this->next_pop = std::vector<long>();
-  this->next_pop.reserve(initial_capacity);
+  this->next_pop = std::vector<long>(initial_capacity);
 
-  this->buffer = std::vector<T>();
-  this->buffer.reserve(initial_capacity);
+  this->buffer = std::vector<T>(initial_capacity);
 }
 
 template <typename T> FIFOBuffer<T>::~FIFOBuffer() {
@@ -145,19 +141,9 @@ template <typename T> FIFOBuffer<T>::~FIFOBuffer() {
 
 
 
-
-
 template <typename T> long FIFOBuffer<T>::getSize() { return this->size; }
 
 template <typename T> long FIFOBuffer<T>::getCapacity() { return this->capacity; }
-
-/*
-  Function used only during debug that does not follow the FIFO principle,
-  use is deprecated
-*/
-template <typename T> T FIFOBuffer<T>::at(long index) { return this->buffer[index]; }
-
-
 
 
 
@@ -209,16 +195,14 @@ template <typename T> LIFOBuffer<T>::LIFOBuffer() {
   this->size = 0;
   this->capacity = 1;
 
-  this->buffer = std::vector<T>();
-  this->buffer.reserve(1);
+  this->buffer = std::vector<T>(1);
 }
 
 template <typename T> LIFOBuffer<T>::LIFOBuffer(long initial_capacity) {
   this->size = 0;
   this->capacity = initial_capacity;
 
-  this->buffer = std::vector<T>();
-  this->buffer.reserve(initial_capacity);
+  this->buffer = std::vector<T>(initial_capacity);
 }
 
 template <typename T> LIFOBuffer<T>::~LIFOBuffer() { this->buffer.clear(); }
@@ -226,11 +210,9 @@ template <typename T> LIFOBuffer<T>::~LIFOBuffer() { this->buffer.clear(); }
 
 
 
-
 template <typename T> long LIFOBuffer<T>::getSize() { return this->size; }
 
 template <typename T> long LIFOBuffer<T>::getCapacity() { return this->capacity; }
-
 
 
 
